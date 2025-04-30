@@ -1,27 +1,26 @@
 'use client';
 
-import LoginForm from "@/app/ui/login.js";
-import MainMenu from "@/app/ui/mainmenu.js";
+import { useContext, useState } from "react";
 
+import { TokenContext, LoginForm } from "@/app/ui/login.js";
+import MainMenu from "@/app/ui/mainmenu.js";
 import styles from "@/app/ui/page.module.css";
 
 
-let isLoggedIn = false;
-
 export default function Home() {
-  let content = null;
+  const [token, setToken] = useState();
 
-  if (isLoggedIn) {
-    content = <MainMenu />;
-  } else {
-    content = <LoginForm />;
-  }
+  const isLoggedIn = token !== undefined;
+  console.log('Is logged in:', isLoggedIn);
 
-  console.log("isLoggedIn: ", isLoggedIn);
+  const content = isLoggedIn ? <MainMenu /> : <LoginForm />;
+  console.log('Content:', content);
+
   return (
     <div className={styles.container}>
-      {content}
-    </div>
+      <TokenContext.Provider value={{ token, setToken }} >
+        {content}
+      </TokenContext.Provider>
+    </div >
   );
-
 }

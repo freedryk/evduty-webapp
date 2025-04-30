@@ -1,10 +1,9 @@
 
-
 export async function login(email, password) {
 
     console.log("Logging in with email:", email);
 
-    const response = await fetch("https://api.evduty.net/v1/account/login", {
+    const data = await fetch("https://api.evduty.net/v1/account/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -21,11 +20,21 @@ export async function login(email, password) {
         timeout: 20,
     });
 
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
+    return data;
+};
+
+
+export async function get(token, route, params = {}) {
+    console.log("get token:", token);
+    const data = await fetch(`https://api.evduty.net/${route}`, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json;charset=UTF-8",
+            "Authorization": `Bearer ${token}`,
+        },
+        params: params,
+    });
 
     return data;
-
 }

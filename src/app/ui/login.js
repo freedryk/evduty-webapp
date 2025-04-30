@@ -1,10 +1,11 @@
 'use client';
 
+import { createContext, useContext } from 'react';
 import { useFormStatus } from 'react-dom';
 
-import login from '@/app/lib/login.js';
+import { login } from '@/app/lib/evduty_api.js';
 
-
+export const TokenContext = createContext();
 
 function Submit() {
     const status = useFormStatus();
@@ -17,10 +18,23 @@ function Submit() {
     );
 }
 
+export function LoginForm() {
 
-export default function LoginForm() {
+    const { setToken } = useContext(TokenContext);
+
+    async function handleLogin(formData) {
+        console.log('handleLogin:', formData);
+        const email = formData.get('email');
+        const password = formData.get('password');
+
+        const response = await login(email, password);
+        const data = await response.json();
+        console.log('Login response:', data);
+        setToken(data);
+    }
+
     return (
-        <form action={login}>
+        <form action={handleLogin} >
             <input type="text" name="email" placeholder="Email" />
             <input type="password" name="password" placeholder="Password" />
             <Submit />
