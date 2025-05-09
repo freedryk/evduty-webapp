@@ -56,6 +56,57 @@
   font-weight: 600;
 }
 
+.station h2 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  font-family: var(--font-geist-mono);
+  align-items: center;
+}
+.station {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr;
+  gap: 16px;
+  align-items: center;
+  max-width: 100%;
+  gap: 8px;
+  border-color: blue;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.terminal {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-color: var(--gray-alpha-200);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  padding: 8px;
+  background: var(--gray-alpha-100);
+  max-width: 25%;
+  min-width: 300px;
+}
+
+.terminal ul {
+  padding-left: 0;
+  margin: 0;
+  list-style-position: inside;
+  list-style-type: none;
+}
+
+.terminal li {
+  font-family: var(--font-geist-mono);
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+}
+
+
 .ctas {
   display: flex;
   gap: 16px;
