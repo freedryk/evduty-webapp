@@ -31,7 +31,7 @@ function Station({ station }) {
         <div className={styles.station} >
             <h2>{station.name}</h2>
                 {station.terminals.map((terminal) => (
-                    <Terminal terminal={terminal} />
+                    <Terminal terminal={terminal} key={terminal.name} />
                 ))}
         </div>
     )
