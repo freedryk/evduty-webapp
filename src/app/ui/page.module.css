@@ -106,6 +106,10 @@
   letter-spacing: -0.01em;
 }
 
+.dataSelector {
+  font-family: var(--font-geist-mono);
+}
+
 
 .ctas {
   display: flex;

@@ -19,8 +19,7 @@ Pushing to main will automatically deploy the app to Github pages here: https://
 ## TODO
 
 - [x] Deploy to github pages
-- [] Plan data to display
-   -  [] overview
-   -  [] raw data
-   -  [] monthly data
+- [x] Plan data to display
+   -  [x] data selection
+   -  [] data request
     
