@@ -18,7 +18,7 @@ function Terminal({ terminal }) {
             <ul>
                 {['name', 'id', 'status'].map((item, index) => (
                     <li key={index}>
-                        {`${item}: ${terminal[item]}`} 
+                        {`${item}: ${terminal[item]}`}
                     </li>
                 ))}
             </ul>
@@ -32,9 +32,9 @@ function Station({ station }) {
     return (
         <div className={styles.station} >
             <h2>{station.name}</h2>
-                {station.terminals.map((terminal) => (
-                    <Terminal terminal={terminal} key={terminal.name} />
-                ))}
+            {station.terminals.map((terminal) => (
+                <Terminal terminal={terminal} key={terminal.name} />
+            ))}
         </div>
     )
 }
@@ -75,7 +75,7 @@ export default function MainMenu() {
 
     const content = (
         <div>
-            <form onSubmit={handleDataRequest} >
+            <form action={handleDataRequest} >
                 <DataSelector className={styles.dataSelector} />
                 <button type="submit" >Submit</button>
             </form>

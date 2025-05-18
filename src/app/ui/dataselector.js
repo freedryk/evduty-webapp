@@ -2,6 +2,7 @@
 
 import { useState, useContext, useEffect } from 'react';
 import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 import { TokenContext } from "@/app/ui/login.js";
 
@@ -24,12 +25,12 @@ function TerminalSelector() {
 function AveragingSelector() {
     return (
         <div className={styles.averagingselector}>
-            <input type="radio" id="averaging" name="averaging" value="Monthly" />
-            <label htmlFor="averaging">Monthly Averages</label>
-            <input type="radio" id="averaging" name="averaging" value="Raw" />
-            <label htmlFor="averaging">Raw Data</label>
-            <input type="radio" id="averaging" name="averaging" value="Overall" />
-            <label htmlFor="averaging">Overall Averages</label>
+            <input type="radio" id="averaging-monthly" name="averaging-monthly" value="Monthly" />
+            <label htmlFor="averaging-monthly">Monthly Averages</label>
+            <input type="radio" id="averaging-raw" name="averaging-raw" value="Raw" />
+            <label htmlFor="averaging-raw">Raw Data</label>
+            <input type="radio" id="averaging-overall" name="averaging-overall" value="Overall" />
+            <label htmlFor="averaging-overall">Overall Averages</label>
         </div>
     )
 }
@@ -39,10 +40,9 @@ export default function DataSelector() {
 
     return (
         <div>
-
-                <TerminalSelector />
-                <Calendar />
-                <AveragingSelector />
-        </div>           
+            <TerminalSelector />
+            <Calendar />
+            <AveragingSelector />
+        </div>
     )
 }
