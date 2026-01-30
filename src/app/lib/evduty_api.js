@@ -1,26 +1,18 @@
 
 export async function login(email, password) {
-
     console.log("Logging in with email:", email);
 
-    const data = await fetch("https://api.evduty.net/v1/account/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
+    const body = {
+        email: email,
+        password: password,
+        device: {
+            id: "A",
+            model: "A",
+            type: "ANDROID",
         },
-        body: JSON.stringify({
-            email: email,
-            password: password,
-            device: {
-                id: "A",
-                model: "A",
-                type: "ANDROID",
-            },
-        }),
-        timeout: 20,
-    });
+    };
 
-    return data;
+    return await post(null, "v1/account/login", body);
 };
 
 
@@ -34,6 +26,27 @@ export async function get(token, route, params = {}) {
             "Authorization": `Bearer ${token}`,
         },
         params: params,
+    });
+
+    return data;
+}
+
+export async function post(token, route, body = {}) {
+    console.log("post token:", token);
+    
+    const headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+    };
+    
+    if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+    }
+    
+    const data = await fetch(`https://api.evduty.net/${route}`, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
     });
 
     return data;
