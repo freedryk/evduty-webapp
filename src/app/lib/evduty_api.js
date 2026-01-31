@@ -17,8 +17,7 @@ export async function login(email, password) {
 
 
 export async function get(token, route, params = {}) {
-    console.log("get token:", token);
-    const data = await fetch(`https://api.evduty.net/${route}`, {
+    return fetch(`https://api.evduty.net/${route}`, {
         method: "GET",
         headers: {
             "Accept": "application/json",
@@ -27,27 +26,21 @@ export async function get(token, route, params = {}) {
         },
         params: params,
     });
-
-    return data;
 }
 
 export async function post(token, route, body = {}) {
-    console.log("post token:", token);
-    
     const headers = {
         "Accept": "application/json",
         "Content-Type": "application/json;charset=UTF-8",
     };
-    
+
     if (token) {
         headers["Authorization"] = `Bearer ${token}`;
     }
-    
-    const data = await fetch(`https://api.evduty.net/${route}`, {
+
+    return fetch(`https://api.evduty.net/${route}`, {
         method: "POST",
         headers: headers,
         body: JSON.stringify(body),
     });
-
-    return data;
 }
