@@ -26,18 +26,18 @@ function Terminal({ terminal }) {
     )
 }
 
-// function Station({ station }) {
-//     console.log("station:", JSON.stringify(station, null, 2));
+function Station({ station }) {
+    console.log("station:", JSON.stringify(station, null, 2));
 
-//     return (
-//         <div className={styles.station} >
-//             <h2>{station.name}</h2>
-//             {station.terminals.map((terminal) => (
-//                 <Terminal terminal={terminal} key={terminal.name} />
-//             ))}
-//         </div>
-//     )
-// }
+    return (
+        <div className={styles.station} >
+            <h2>{station.name}</h2>
+            {station.terminals.map((terminal) => (
+                <Terminal terminal={terminal} key={terminal.name} />
+            ))}
+        </div>
+    )
+}
 
 export default function MainMenu() {
     const [data, setData] = useState(null);
@@ -63,10 +63,10 @@ export default function MainMenu() {
         // placeholder code
         // TODO: replace with actual data request
         console.log('handleDataRequest:', formData);
-        // const terminals = formData.get('terminals');
-        // const startDate = formData.get('startDate');
-        // const endDate = formData.get('endDate');
-        // const averaging = formData.get('averaging');
+        const terminals = formData.get('terminals');
+        const startDate = formData.get('startDate');
+        const endDate = formData.get('endDate');
+        const averaging = formData.get('averaging');
     };
 
     // const content = data
