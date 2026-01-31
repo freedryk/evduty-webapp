@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState, useContext, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useState, useContext, useEffect } from 'react';
 
 import { TokenContext } from "@/app/ui/login.js";
 
@@ -26,10 +25,6 @@ function Terminal({ terminal }) {
         </div>
     )
 }
-
-Terminal.propTypes = {
-    terminal: PropTypes.object.isRequired,
-};
 
 // function Station({ station }) {
 //     console.log("station:", JSON.stringify(station, null, 2));

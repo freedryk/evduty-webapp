@@ -7,8 +7,14 @@ import css from "@eslint/css";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs,jsx}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.browser } },
+  { files: ["**/*.{js,mjs,cjs,jsx}"], plugins: { js }, extends: ["js/recommended", "plugin:react/jsx-runtime"], languageOptions: { globals: globals.browser } },
   pluginReact.configs.flat.recommended,
+  {
+    files: ["**/*.{js,jsx}"],
+    rules: {
+      "react/prop-types": "off"
+    }
+  },
   { files: ["**/*.json"], plugins: { json }, language: "json/json", extends: ["json/recommended"] },
   { files: ["**/*.md"], plugins: { markdown }, language: "markdown/gfm", extends: ["markdown/recommended"] },
   { files: ["**/*.css"], plugins: { css }, language: "css/css", extends: ["css/recommended"] },

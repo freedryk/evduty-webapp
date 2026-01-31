@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { TokenContext, LoginForm } from "@/app/ui/login.js";
 import MainMenu from "@/app/ui/mainmenu.js";
