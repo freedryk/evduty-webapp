@@ -14,7 +14,6 @@ export default function Home() {
   console.log('Is logged in:', isLoggedIn);
 
   const content = isLoggedIn ? <MainMenu /> : <LoginForm />;
-  console.log('Content:', content);
 
   return (
     <div className={styles.container}>
