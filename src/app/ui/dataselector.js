@@ -1,12 +1,7 @@
 'use client';
 
-import { useState, useContext, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-
-import { TokenContext } from "@/app/ui/login.js";
-
-import { get } from '@/app/lib/evduty_api.js';
 
 import styles from "@/app/ui/page.module.css";
 
@@ -36,8 +31,6 @@ function AveragingSelector() {
 }
 
 export default function DataSelector() {
-    const { token, setToken } = useContext(TokenContext);
-
     return (
         <div>
             <TerminalSelector />

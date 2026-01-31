@@ -42,7 +42,7 @@ function Station({ station }) {
 export default function MainMenu() {
     const [data, setData] = useState(null);
 
-    const { token, setToken } = useContext(TokenContext);
+    const { token } = useContext(TokenContext);
 
     useEffect(() => {
         const fetchData = async () => {

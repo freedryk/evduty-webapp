@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 import { TokenContext, LoginForm } from "@/app/ui/login.js";
 import MainMenu from "@/app/ui/mainmenu.js";
@@ -14,7 +14,6 @@ export default function Home() {
   console.log('Is logged in:', isLoggedIn);
 
   const content = isLoggedIn ? <MainMenu /> : <LoginForm />;
-  console.log('Content:', content);
 
   return (
     <div className={styles.container}>

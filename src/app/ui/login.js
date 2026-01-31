@@ -23,13 +23,11 @@ export function LoginForm() {
     const { setToken } = useContext(TokenContext);
 
     async function handleLogin(formData) {
-        console.log('handleLogin:', formData);
         const email = formData.get('email');
         const password = formData.get('password');
 
         const response = await login(email, password);
         const data = await response.json();
-        console.log('Login response:', data);
         setToken(data);
     }
 
