@@ -159,10 +159,6 @@
   transition: background 0.2s;
 }
 
-.loginForm button:hover {
-  background: var(--button-primary-hover);
-}
-
 .loginForm button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
