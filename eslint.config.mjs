@@ -1,8 +1,8 @@
-import js from "@eslint/js"
-import globals from "globals"
-import pluginReact from "eslint-plugin-react"
-import { defineConfig, globalIgnores } from "eslint/config"
-import eslintConfigPrettier from "eslint-config-prettier/flat"
+import js from "@eslint/js";
+import globals from "globals";
+import pluginReact from "eslint-plugin-react";
+import { defineConfig, globalIgnores } from "eslint/config";
+import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 export default defineConfig([
   globalIgnores([
@@ -32,4 +32,4 @@ export default defineConfig([
     },
   },
   eslintConfigPrettier,
-])
+]);

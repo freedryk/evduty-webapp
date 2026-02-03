@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import Calendar from "react-calendar"
-import "react-calendar/dist/Calendar.css"
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
-import styles from "@/app/ui/page.module.css"
+import styles from "@/app/ui/page.module.css";
 
 function TerminalSelector({ terminals }) {
   return (
@@ -16,7 +16,7 @@ function TerminalSelector({ terminals }) {
         ))}
       </select>
     </div>
-  )
+  );
 }
 
 function AveragingSelector() {
@@ -39,7 +39,7 @@ function AveragingSelector() {
       />
       <label htmlFor="averaging-overall">Overall Averages</label>
     </div>
-  )
+  );
 }
 
 export default function DataSelector({ station }) {
@@ -49,5 +49,5 @@ export default function DataSelector({ station }) {
       <Calendar />
       <AveragingSelector />
     </div>
-  )
+  );
 }
