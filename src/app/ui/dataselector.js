@@ -1,20 +1,22 @@
-"use client";
+'use client'
 
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css'
 
-import styles from "@/app/ui/page.module.css";
+import styles from '@/app/ui/page.module.css'
 
-function TerminalSelector() {
+function TerminalSelector({ terminals }) {
   return (
     <div className={styles.terminalselector}>
       <select name="terminals" id="terminals" multiple>
-        <option value="terminal1">Terminal 1</option>
-        <option value="terminal2">Terminal 2</option>
-        <option value="terminal3">Terminal 3</option>
+        {terminals.map((terminal) => (
+          <option key={terminal.id} value={terminal.name}>
+            {terminal.name}
+          </option>
+        ))}
       </select>
     </div>
-  );
+  )
 }
 
 function AveragingSelector() {
@@ -37,15 +39,15 @@ function AveragingSelector() {
       />
       <label htmlFor="averaging-overall">Overall Averages</label>
     </div>
-  );
+  )
 }
 
-export default function DataSelector() {
+export default function DataSelector({ station }) {
   return (
     <div>
-      <TerminalSelector />
+      <TerminalSelector terminals={station.terminals} />
       <Calendar />
       <AveragingSelector />
     </div>
-  );
+  )
 }
