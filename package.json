@@ -22,7 +22,9 @@
     "@eslint/markdown": "^7.5.1",
     "eslint": "^9.39.2",
     "eslint-config-next": "15.2.1",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react": "^7.37.5",
-    "globals": "^17.2.0"
+    "globals": "^17.3.0",
+    "prettier": "3.8.1"
   }
 }

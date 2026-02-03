@@ -14,12 +14,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Pushing to main will automatically deploy the app to Github pages here: https://freedryk.github.io/evduty-webapp/ 
+Pushing to main will automatically deploy the app to Github pages here: https://freedryk.github.io/evduty-webapp/
 
 ## TODO
 
 - [x] Deploy to github pages
 - [x] Plan data to display
-   -  [x] data selection
-   -  [] data request
-    
+  - [x] data selection
+  - [] data request

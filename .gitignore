@@ -42,3 +42,6 @@ next-env.d.ts
 
 .vscode
 .jj
+node_modules
+.vscode
+out

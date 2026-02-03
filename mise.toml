@@ -1,0 +1,9 @@
+[tools]
+node = "latest"
+npm = "latest"
+
+[tasks.format]
+run = "npx prettier --write ."
+
+[tasks.lint]
+run = "npx eslint ."
