@@ -1,20 +1,20 @@
-'use client'
+"use client"
 
-import { createContext, useContext } from 'react'
-import { useFormStatus } from 'react-dom'
+import { createContext, useContext } from "react"
+import { useFormStatus } from "react-dom"
 
-import { login } from '@/app/lib/evduty_api.js'
-import styles from '@/app/ui/page.module.css'
+import { login } from "@/app/lib/evduty_api.js"
+import styles from "@/app/ui/page.module.css"
 
 export const TokenContext = createContext()
 
 function Submit() {
   const status = useFormStatus()
 
-  console.log('Submit pending:', status.pending)
+  console.log("Submit pending:", status.pending)
   return (
     <button type="submit" disabled={status.pending}>
-      {status.pending ? 'Logging in...' : 'Login'}
+      {status.pending ? "Logging in..." : "Login"}
     </button>
   )
 }
@@ -23,8 +23,8 @@ export function LoginForm() {
   const { setToken } = useContext(TokenContext)
 
   async function handleLogin(formData) {
-    const email = formData.get('email')
-    const password = formData.get('password')
+    const email = formData.get("email")
+    const password = formData.get("password")
 
     const response = await login(email, password)
     const data = await response.json()

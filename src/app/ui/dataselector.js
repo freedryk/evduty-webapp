@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
-import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css'
+import Calendar from "react-calendar"
+import "react-calendar/dist/Calendar.css"
 
-import styles from '@/app/ui/page.module.css'
+import styles from "@/app/ui/page.module.css"
 
 function TerminalSelector({ terminals }) {
   return (
