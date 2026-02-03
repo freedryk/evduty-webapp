@@ -5,15 +5,13 @@ import "react-calendar/dist/Calendar.css";
 
 import styles from "@/app/ui/page.module.css";
 
-function TerminalSelector({ terminals }) {
+function TerminalSelector() {
   return (
     <div className={styles.terminalselector}>
       <select name="terminals" id="terminals" multiple>
-        {terminals.map((terminal) => (
-          <option key={terminal.id} value={terminal.name}>
-            {terminal.name}
-          </option>
-        ))}
+        <option value="terminal1">Terminal 1</option>
+        <option value="terminal2">Terminal 2</option>
+        <option value="terminal3">Terminal 3</option>
       </select>
     </div>
   );
@@ -42,10 +40,10 @@ function AveragingSelector() {
   );
 }
 
-export default function DataSelector({ station }) {
+export default function DataSelector() {
   return (
     <div>
-      <TerminalSelector terminals={station.terminals} />
+      <TerminalSelector />
       <Calendar />
       <AveragingSelector />
     </div>

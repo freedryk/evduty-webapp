@@ -1,9 +1,13 @@
 "use client";
 
 import { useState, useContext, useEffect } from "react";
+
 import { TokenContext } from "@/app/ui/login.js";
+
 import DataSelector from "@/app/ui/dataselector.js";
+
 import { get } from "@/app/lib/evduty_api.js";
+
 import styles from "@/app/ui/page.module.css";
 
 function Terminal({ terminal }) {
