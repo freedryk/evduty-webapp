@@ -4,6 +4,7 @@ import { createContext, useContext } from "react";
 import { useFormStatus } from "react-dom";
 
 import { login } from "@/app/lib/evduty_api.js";
+import styles from "@/app/ui/page.module.css";
 
 export const TokenContext = createContext();
 
@@ -31,7 +32,7 @@ export function LoginForm() {
   }
 
   return (
-    <form action={handleLogin}>
+    <form action={handleLogin} className={styles.loginForm}>
       <input type="text" name="email" placeholder="Email" />
       <input type="password" name="password" placeholder="Password" />
       <Submit />

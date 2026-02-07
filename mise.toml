@@ -7,3 +7,6 @@ run = "npx prettier --write ."
 
 [tasks.lint]
 run = "npx eslint ."
+
+[tasks.dev]
+run = "npm run dev"

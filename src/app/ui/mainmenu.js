@@ -66,10 +66,6 @@ export default function MainMenu() {
     // const averaging = formData.get("averaging");
   };
 
-//   const content = data
-//       ? data.map((item, index) => (<Station key={index} station={item} className={styles.station} />))
-//       : <p>Loading...</p>
-
   const content = (
     <div>
       <form action={handleDataRequest}>
