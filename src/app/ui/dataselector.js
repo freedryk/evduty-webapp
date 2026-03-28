@@ -1,17 +1,35 @@
 "use client";
 
+import { useState } from "react";
+
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
 import styles from "@/app/ui/page.module.css";
 
-function TerminalSelector() {
+function TerminalSelector({ terminals = [], selectedTerminals, setSelectedTerminals }) {
+  const handleChange = (e) => {
+    const selectedValues = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value,
+    );
+    setSelectedTerminals(selectedValues);
+  };
+
   return (
     <div className={styles.terminalselector}>
-      <select name="terminals" id="terminals" multiple>
-        <option value="terminal1">Terminal 1</option>
-        <option value="terminal2">Terminal 2</option>
-        <option value="terminal3">Terminal 3</option>
+      <select
+        name="terminals"
+        id="terminals"
+        multiple
+        onChange={handleChange}
+        value={selectedTerminals}
+      >
+        {terminals.map((terminal) => (
+          <option key={terminal.id} value={terminal.id}>
+            {terminal.name}
+          </option>
+        ))}
       </select>
     </div>
   );
@@ -40,10 +58,16 @@ function AveragingSelector() {
   );
 }
 
-export default function DataSelector() {
+export default function DataSelector({ terminals = [], className }) {
+  const [selectedTerminals, setSelectedTerminals] = useState([]);
+
   return (
-    <div>
-      <TerminalSelector />
+    <div className={className}>
+      <TerminalSelector
+        terminals={terminals}
+        selectedTerminals={selectedTerminals}
+        setSelectedTerminals={setSelectedTerminals}
+      />
       <Calendar />
       <AveragingSelector />
     </div>

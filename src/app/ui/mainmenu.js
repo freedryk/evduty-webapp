@@ -10,32 +10,6 @@ import { get } from "@/app/lib/evduty_api.js";
 
 import styles from "@/app/ui/page.module.css";
 
-function Terminal({ terminal }) {
-  console.log("terminal:", JSON.stringify(terminal));
-  return (
-    <div className={styles.terminal}>
-      <ul>
-        {["name", "id", "status"].map((item, index) => (
-          <li key={index}>{`${item}: ${terminal[item]}`}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function Station({ station }) {
-  console.log("station:", JSON.stringify(station, null, 2));
-
-  return (
-    <div className={styles.station}>
-      <h2>{station.name}</h2>
-      {station.terminals.map((terminal) => (
-        <Terminal terminal={terminal} key={terminal.name} />
-      ))}
-    </div>
-  );
-}
-
 export default function MainMenu() {
   const [data, setData] = useState(null);
 
@@ -66,10 +40,17 @@ export default function MainMenu() {
     // const averaging = formData.get("averaging");
   };
 
+  // Find the hardwired station and extract its terminals
+  const HARDWIRED_STATION_ID = "65d634a280b3eaadad082254";
+  const hardwiredStation = data?.find(
+    (station) => station.id === HARDWIRED_STATION_ID,
+  );
+  const terminals = hardwiredStation?.terminals || [];
+
   const content = (
     <div>
       <form action={handleDataRequest}>
-        <DataSelector className={styles.dataSelector} />
+        <DataSelector className={styles.dataSelector} terminals={terminals} />
         <button type="submit">Submit</button>
       </form>
     </div>
