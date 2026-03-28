@@ -34,10 +34,12 @@ export default function MainMenu() {
     // placeholder code
     // TODO: replace with actual data request
     console.log("handleDataRequest:", formData);
-    // const terminals = formData.get("terminals");
-    // const startDate = formData.get("startDate");
-    // const endDate = formData.get("endDate");
-    // const averaging = formData.get("averaging");
+    const terminals = formData.getAll("terminals");
+    const startDate = formData.get("startDate");
+    const endDate = formData.get("endDate");
+    const averaging = formData.get("averaging");
+
+    console.log({ terminals, startDate, endDate, averaging });
   };
 
   // Find the hardwired station and extract its terminals
