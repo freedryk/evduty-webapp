@@ -22,6 +22,9 @@ function TerminalSelector({
 
   return (
     <div className={styles.terminalselector}>
+      <label htmlFor="terminals" className={styles.srOnly}>
+        Terminals
+      </label>
       <select
         name="terminals"
         id="terminals"

@@ -10,7 +10,6 @@ export default function Home() {
   const [token, setToken] = useState();
 
   const isLoggedIn = token !== undefined;
-  console.log("Is logged in:", isLoggedIn);
 
   const content = isLoggedIn ? <MainMenu /> : <LoginForm />;
 

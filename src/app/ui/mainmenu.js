@@ -109,7 +109,7 @@ export default function MainMenu() {
 
   return (
     <div>
-      <h1>Select</h1>
+      <h1>View Usage</h1>
       {content}
     </div>
   );

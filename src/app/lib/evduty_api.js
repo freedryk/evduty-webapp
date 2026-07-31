@@ -1,6 +1,6 @@
-export async function login(email, password) {
-  console.log("Logging in with email:", email);
+const API_BASE_URL = "https://api.evduty.net/";
 
+export async function login(email, password) {
   const body = {
     email: email,
     password: password,
@@ -23,7 +23,7 @@ export async function get(token, route, params = {}) {
   }
   const query = searchParams.toString();
 
-  return fetch(`https://api.evduty.net/${route}${query ? `?${query}` : ""}`, {
+  return fetch(`${API_BASE_URL}${route}${query ? `?${query}` : ""}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -79,7 +79,7 @@ export async function post(token, route, body = {}) {
     headers["Authorization"] = `Bearer ${token}`;
   }
 
-  return fetch(`https://api.evduty.net/${route}`, {
+  return fetch(`${API_BASE_URL}${route}`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify(body),
