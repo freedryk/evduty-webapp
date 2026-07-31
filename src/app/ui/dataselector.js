@@ -22,6 +22,9 @@ function TerminalSelector({
 
   return (
     <div className={styles.terminalselector}>
+      <label htmlFor="terminals" className={styles.srOnly}>
+        Terminals
+      </label>
       <select
         name="terminals"
         id="terminals"
@@ -84,7 +87,7 @@ function AveragingSelector({ averaging, setAveraging }) {
         checked={averaging === "Overall"}
         onChange={handleChange}
       />
-      <label htmlFor="averaging-overall">Overall Averages</label>
+      <label htmlFor="averaging-overall">Overall Totals</label>
     </div>
   );
 }
