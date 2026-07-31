@@ -110,6 +110,73 @@
   font-family: var(--font-geist-mono);
 }
 
+.usageDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+  width: 100%;
+}
+
+.usageChart {
+  width: 100%;
+  min-height: 360px;
+  padding-bottom: 8px;
+}
+
+.metricToggle {
+  display: flex;
+  gap: 16px;
+  font-family: var(--font-geist-mono);
+  font-size: 14px;
+}
+
+.usageTableWrap {
+  overflow-x: auto;
+}
+
+.usageTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-geist-mono);
+  font-size: 14px;
+}
+
+.usageTable th,
+.usageTable td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--gray-alpha-200);
+  font-variant-numeric: tabular-nums;
+}
+
+.usageTable th {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.emptyState {
+  color: #52514e;
+  font-family: var(--font-geist-mono);
+  font-size: 14px;
+}
+
+.errorState {
+  color: #d03b3b;
+  font-family: var(--font-geist-mono);
+  font-size: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .emptyState {
+    color: #c3c2b7;
+  }
+
+  .errorState {
+    color: #e66767;
+  }
+}
+
 .container {
   display: flex;
   align-items: center;
