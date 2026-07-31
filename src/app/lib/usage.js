@@ -67,35 +67,28 @@ export function aggregateMonthly(sessions) {
 }
 
 export function aggregateOverall(sessions) {
-  const monthlyRows = aggregateMonthly(sessions);
   const buckets = new Map();
 
-  for (const row of monthlyRows) {
-    const key = row.month.getTime();
-
-    if (!buckets.has(key)) {
-      buckets.set(key, {
-        month: row.month,
+  for (const session of sessions) {
+    if (!buckets.has(session.terminalId)) {
+      buckets.set(session.terminalId, {
+        terminalId: session.terminalId,
+        terminalName: session.terminalName,
         energyKWh: 0,
         costLocal: 0,
-        terminalCount: 0,
+        sessionCount: 0,
       });
     }
 
-    const bucket = buckets.get(key);
-    bucket.energyKWh += row.energyKWh;
-    bucket.costLocal += row.costLocal;
-    bucket.terminalCount += 1;
+    const bucket = buckets.get(session.terminalId);
+    bucket.energyKWh += session.energyKWh;
+    bucket.costLocal += session.costLocal;
+    bucket.sessionCount += 1;
   }
 
-  return [...buckets.values()]
-    .map((bucket) => ({
-      month: bucket.month,
-      energyKWh: bucket.energyKWh / bucket.terminalCount,
-      costLocal: bucket.costLocal / bucket.terminalCount,
-      terminalCount: bucket.terminalCount,
-    }))
-    .sort((a, b) => a.month - b.month);
+  return [...buckets.values()].sort((a, b) =>
+    a.terminalName.localeCompare(b.terminalName),
+  );
 }
 
 function monthFloor(date) {

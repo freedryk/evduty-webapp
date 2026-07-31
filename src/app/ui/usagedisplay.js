@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   BarChart,
   Bar,
+  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -192,16 +193,22 @@ export default function UsageDisplay({
             ) : (
               <BarChart data={rows}>
                 <CartesianGrid stroke={gridColor} vertical={false} />
-                <XAxis dataKey="month" tickFormatter={formatMonth} stroke={axisColor} />
+                <XAxis dataKey="terminalName" stroke={axisColor} />
                 <YAxis stroke={axisColor} />
-                <Tooltip labelFormatter={formatMonth} formatter={tooltipFormatter} />
+                <Tooltip formatter={tooltipFormatter} />
                 <Bar
                   dataKey={metricKey}
-                  name={metric === "cost" ? "Average cost" : "Average energy"}
-                  fill={palette[0]}
+                  name={metric === "cost" ? "Cost" : "Energy"}
                   radius={[4, 4, 0, 0]}
                   maxBarSize={24}
-                />
+                >
+                  {rows.map((row) => (
+                    <Cell
+                      key={row.terminalId}
+                      fill={terminalColors.get(row.terminalId)}
+                    />
+                  ))}
+                </Bar>
               </BarChart>
             )}
           </ResponsiveContainer>
@@ -285,19 +292,19 @@ function OverallTable({ rows }) {
     <table className={styles.usageTable}>
       <thead>
         <tr>
-          <th>Month</th>
-          <th>Energy (kWh, avg)</th>
-          <th>Cost ($, avg)</th>
-          <th>Terminals reporting</th>
+          <th>Terminal</th>
+          <th>Energy (kWh)</th>
+          <th>Cost ($)</th>
+          <th>Sessions</th>
         </tr>
       </thead>
       <tbody>
         {rows.map((row) => (
-          <tr key={row.month.getTime()}>
-            <td>{formatMonth(row.month)}</td>
+          <tr key={row.terminalId}>
+            <td>{row.terminalName}</td>
             <td>{row.energyKWh.toFixed(2)}</td>
             <td>{row.costLocal.toFixed(2)}</td>
-            <td>{row.terminalCount}</td>
+            <td>{row.sessionCount}</td>
           </tr>
         ))}
       </tbody>

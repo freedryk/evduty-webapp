@@ -87,7 +87,7 @@ function AveragingSelector({ averaging, setAveraging }) {
         checked={averaging === "Overall"}
         onChange={handleChange}
       />
-      <label htmlFor="averaging-overall">Overall Averages</label>
+      <label htmlFor="averaging-overall">Overall Totals</label>
     </div>
   );
 }
