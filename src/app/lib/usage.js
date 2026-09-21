@@ -61,8 +61,7 @@ export function aggregateMonthly(sessions) {
   }
 
   return [...buckets.values()].sort(
-    (a, b) =>
-      a.month - b.month || a.terminalName.localeCompare(b.terminalName),
+    (a, b) => a.month - b.month || a.terminalName.localeCompare(b.terminalName),
   );
 }
 

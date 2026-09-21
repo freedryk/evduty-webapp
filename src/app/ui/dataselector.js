@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -20,8 +20,26 @@ function TerminalSelector({
     setSelectedTerminals(selectedValues);
   };
 
+  const allSelected =
+    terminals.length > 0 && selectedTerminals.length === terminals.length;
+
+  const handleSelectAllChange = (e) => {
+    setSelectedTerminals(
+      e.target.checked ? terminals.map((terminal) => terminal.id) : [],
+    );
+  };
+
   return (
     <div className={styles.terminalselector}>
+      <div>
+        <input
+          type="checkbox"
+          id="terminals-select-all"
+          checked={allSelected}
+          onChange={handleSelectAllChange}
+        />
+        <label htmlFor="terminals-select-all">All terminals</label>
+      </div>
       <label htmlFor="terminals" className={styles.srOnly}>
         Terminals
       </label>
@@ -52,6 +70,28 @@ function formatDate(date) {
   const day = String(date.getDate()).padStart(2, "0");
 
   return `${year}-${month}-${day}`;
+}
+
+function startOfMonth(date) {
+  return new Date(date.getFullYear(), date.getMonth(), 1);
+}
+
+function endOfMonth(date) {
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+}
+
+function DateRangeSelector({ dateRange, setDateRange }) {
+  return (
+    <div className={styles.monthSelector}>
+      <Calendar
+        selectRange
+        maxDetail="year"
+        view="year"
+        onChange={setDateRange}
+        value={dateRange}
+      />
+    </div>
+  );
 }
 
 function AveragingSelector({ averaging, setAveraging }) {
@@ -95,18 +135,20 @@ function AveragingSelector({ averaging, setAveraging }) {
 export default function DataSelector({ terminals = [], className }) {
   const [selectedTerminals, setSelectedTerminals] = useState([]);
   const [averaging, setAveraging] = useState("Monthly");
-  const [dateRange, setDateRange] = useState([new Date(), new Date()]);
+  const [dateRange, setDateRange] = useState(() => {
+    const today = new Date();
+    return [startOfMonth(today), endOfMonth(today)];
+  });
 
-  const handleDateChange = (nextValue) => {
-    if (Array.isArray(nextValue)) {
-      setDateRange(nextValue);
-      return;
-    }
+  useEffect(() => {
+    setSelectedTerminals(terminals.map((terminal) => terminal.id));
+  }, [terminals]);
 
-    setDateRange([nextValue, nextValue]);
-  };
-
-  const [startDate, endDate] = dateRange;
+  const [rangeStart, rangeEnd] = Array.isArray(dateRange)
+    ? dateRange
+    : [dateRange, dateRange];
+  const startDate = startOfMonth(rangeStart);
+  const endDate = endOfMonth(rangeEnd);
 
   return (
     <div className={className}>
@@ -115,7 +157,7 @@ export default function DataSelector({ terminals = [], className }) {
         selectedTerminals={selectedTerminals}
         setSelectedTerminals={setSelectedTerminals}
       />
-      <Calendar selectRange onChange={handleDateChange} value={dateRange} />
+      <DateRangeSelector dateRange={dateRange} setDateRange={setDateRange} />
       <input type="hidden" name="startDate" value={formatDate(startDate)} />
       <input type="hidden" name="endDate" value={formatDate(endDate)} />
       <AveragingSelector averaging={averaging} setAveraging={setAveraging} />

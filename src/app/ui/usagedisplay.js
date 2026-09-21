@@ -175,9 +175,16 @@ export default function UsageDisplay({
             {mode === "Monthly" ? (
               <BarChart data={pivotMonthlyForChart(rows, metricKey)}>
                 <CartesianGrid stroke={gridColor} vertical={false} />
-                <XAxis dataKey="month" tickFormatter={formatMonth} stroke={axisColor} />
+                <XAxis
+                  dataKey="month"
+                  tickFormatter={formatMonth}
+                  stroke={axisColor}
+                />
                 <YAxis stroke={axisColor} />
-                <Tooltip labelFormatter={formatMonth} formatter={tooltipFormatter} />
+                <Tooltip
+                  labelFormatter={formatMonth}
+                  formatter={tooltipFormatter}
+                />
                 <Legend />
                 {selectedTerminals.map((terminal) => (
                   <Bar

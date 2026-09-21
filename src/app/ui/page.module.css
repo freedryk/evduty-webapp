@@ -110,6 +110,63 @@
   font-family: var(--font-geist-mono);
 }
 
+.monthSelector :global(.react-calendar) {
+  background: var(--background);
+  color: var(--foreground);
+  border-color: var(--gray-alpha-200);
+  font-family: var(--font-geist-mono);
+}
+
+.monthSelector :global(.react-calendar__navigation button) {
+  color: var(--foreground);
+}
+
+.monthSelector :global(.react-calendar__navigation button:disabled) {
+  background-color: var(--gray-alpha-100);
+  color: var(--foreground);
+  opacity: 0.4;
+}
+
+.monthSelector :global(.react-calendar__navigation button:enabled:hover),
+.monthSelector :global(.react-calendar__navigation button:enabled:focus) {
+  background-color: var(--gray-alpha-200);
+}
+
+.monthSelector :global(.react-calendar__tile) {
+  color: var(--foreground);
+}
+
+.monthSelector :global(.react-calendar__tile:disabled) {
+  background-color: var(--gray-alpha-100);
+  color: var(--foreground);
+  opacity: 0.4;
+}
+
+.monthSelector :global(.react-calendar__tile:enabled:hover),
+.monthSelector :global(.react-calendar__tile:enabled:focus) {
+  background-color: var(--gray-alpha-200);
+}
+
+.monthSelector :global(.react-calendar__tile--now) {
+  background: var(--gray-alpha-200);
+}
+
+.monthSelector :global(.react-calendar__tile--now:enabled:hover),
+.monthSelector :global(.react-calendar__tile--now:enabled:focus) {
+  background: var(--gray-alpha-200);
+}
+
+.monthSelector :global(.react-calendar__tile--active) {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.monthSelector :global(.react-calendar__tile--active:enabled:hover),
+.monthSelector :global(.react-calendar__tile--active:enabled:focus) {
+  background: var(--foreground);
+  color: var(--background);
+}
+
 .srOnly {
   position: absolute;
   width: 1px;
