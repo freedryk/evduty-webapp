@@ -7,6 +7,7 @@ import requests
 
 
 REQUEST_TIMEOUT = 30
+GST = 1.05
 
 
 def call_api(token, endpoint, query_params=None):
@@ -64,12 +65,29 @@ def login():
 
 def extract_energy_consumed(data):
     data = pd.DataFrame(data)
-    data["date"] = pd.to_datetime(data["date"], unit="s").dt.floor("D")
+    print(data)
+    # data["date"] = pd.to_datetime(data["date"], unit="s").dt.floor("D")
+    data["date"] = pd.to_datetime(data["date"], unit="s")
     data["energyConsumed"] = data["energyConsumed"] / 1000.0
 
-    data = data.groupby(["date"])["energyConsumed",].sum()
+    # data = data.groupby(["date"])["energyConsumed",].sum()
 
-    data["cost"] = data["energyConsumed"] * 0.1097
+    # data = data.reset_index()
+
+    data["rate"] = 0.0975
+
+    mask = data["date"] >= "2024-04-01"
+    mask &= data["date"] < "2025-04-01"
+    data.loc[mask, "rate"] = 0.1044
+
+    mask = data["date"] >= "2025-04-01"
+    mask &= data["date"] < "2026-04-01"
+    data.loc[mask, "rate"] = 0.1119
+
+    mask = data["date"] >= "2026-04-01"
+    data.loc[mask, "rate"] = 0.1169
+
+    data["cost"] = data["energyConsumed"] * data["rate"] * GST
 
     return data
 
@@ -95,11 +113,14 @@ def get_activity(token, station_id, terminal_id, limit=20):
 
         offset += limit
 
-    result = pd.concat(result)
-    result = result.reset_index()
-    result = result.sort_values(by="date")
-    result = result.set_index("date")
-    result = result.resample("MS").sum()
+    if result:
+        result = pd.concat(result)
+        result = result.reset_index()
+        result = result.sort_values(by="date")
+        # result = result.set_index("date")
+        # result = result.resample("MS").agg(
+        #     {"energyConsumed": "sum", "cost": "sum", "rate": "mean"}
+        # )
 
     return result
 
@@ -118,14 +139,18 @@ def main():
         print(terminal["id"], terminal["name"])
 
         activity = get_activity(token, station["id"], terminal["id"], limit=100)
-        activity["name"] = terminal["name"]
-        activity["id"] = terminal["id"]
-        result.append(activity)
+        if not isinstance(activity, list):
+            activity["name"] = terminal["name"]
+            activity["id"] = terminal["id"]
+            result.append(activity)
     result = pd.concat(result)
 
     for group, df in result.groupby("name"):
         print(group)
         print(df)
+
+    # result.to_csv("activity.csv")
+    result.to_parquet("activity.parquet")
 
 
 if __name__ == "__main__":
