@@ -110,6 +110,142 @@
   font-family: var(--font-geist-mono);
 }
 
+.monthSelector :global(.react-calendar) {
+  background: var(--background);
+  color: var(--foreground);
+  border-color: var(--gray-alpha-200);
+  font-family: var(--font-geist-mono);
+}
+
+.monthSelector :global(.react-calendar__navigation button) {
+  color: var(--foreground);
+}
+
+.monthSelector :global(.react-calendar__navigation button:disabled) {
+  background-color: var(--gray-alpha-100);
+  color: var(--foreground);
+  opacity: 0.4;
+}
+
+.monthSelector :global(.react-calendar__navigation button:enabled:hover),
+.monthSelector :global(.react-calendar__navigation button:enabled:focus) {
+  background-color: var(--gray-alpha-200);
+}
+
+.monthSelector :global(.react-calendar__tile) {
+  color: var(--foreground);
+}
+
+.monthSelector :global(.react-calendar__tile:disabled) {
+  background-color: var(--gray-alpha-100);
+  color: var(--foreground);
+  opacity: 0.4;
+}
+
+.monthSelector :global(.react-calendar__tile:enabled:hover),
+.monthSelector :global(.react-calendar__tile:enabled:focus) {
+  background-color: var(--gray-alpha-200);
+}
+
+.monthSelector :global(.react-calendar__tile--now) {
+  background: var(--gray-alpha-200);
+}
+
+.monthSelector :global(.react-calendar__tile--now:enabled:hover),
+.monthSelector :global(.react-calendar__tile--now:enabled:focus) {
+  background: var(--gray-alpha-200);
+}
+
+.monthSelector :global(.react-calendar__tile--active) {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.monthSelector :global(.react-calendar__tile--active:enabled:hover),
+.monthSelector :global(.react-calendar__tile--active:enabled:focus) {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.usageDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+  width: 100%;
+}
+
+.usageChart {
+  width: 100%;
+  min-height: 360px;
+  padding-bottom: 8px;
+}
+
+.metricToggle {
+  display: flex;
+  gap: 16px;
+  font-family: var(--font-geist-mono);
+  font-size: 14px;
+}
+
+.usageTableWrap {
+  overflow-x: auto;
+}
+
+.usageTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-geist-mono);
+  font-size: 14px;
+}
+
+.usageTable th,
+.usageTable td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--gray-alpha-200);
+  font-variant-numeric: tabular-nums;
+}
+
+.usageTable th {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.emptyState {
+  color: #52514e;
+  font-family: var(--font-geist-mono);
+  font-size: 14px;
+}
+
+.errorState {
+  color: #d03b3b;
+  font-family: var(--font-geist-mono);
+  font-size: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .emptyState {
+    color: #c3c2b7;
+  }
+
+  .errorState {
+    color: #e66767;
+  }
+}
+
 .container {
   display: flex;
   align-items: center;

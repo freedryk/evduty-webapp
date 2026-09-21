@@ -1,6 +1,7 @@
 [tools]
 node = "latest"
 npm = "latest"
+uv = "latest"
 
 [tasks.format]
 run = "npx prettier --write ."
@@ -10,3 +11,6 @@ run = "npx eslint ."
 
 [tasks.dev]
 run = "npm run dev"
+
+[tasks.sync]
+run = "npm install"

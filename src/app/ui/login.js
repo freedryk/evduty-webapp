@@ -11,7 +11,6 @@ export const TokenContext = createContext();
 function Submit() {
   const status = useFormStatus();
 
-  console.log("Submit pending:", status.pending);
   return (
     <button type="submit" disabled={status.pending}>
       {status.pending ? "Logging in..." : "Login"}
@@ -33,8 +32,26 @@ export function LoginForm() {
 
   return (
     <form action={handleLogin} className={styles.loginForm}>
-      <input type="text" name="email" placeholder="Email" />
-      <input type="password" name="password" placeholder="Password" />
+      <label htmlFor="email" className={styles.srOnly}>
+        Email
+      </label>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        placeholder="Email"
+        autoComplete="email"
+      />
+      <label htmlFor="password" className={styles.srOnly}>
+        Password
+      </label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password"
+        autoComplete="current-password"
+      />
       <Submit />
     </form>
   );
