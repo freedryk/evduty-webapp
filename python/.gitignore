@@ -1,2 +1,7 @@
 *.parquet
 *.csv
+__pycache__/
+.pytest_cache/
+.uv-cache/
+.venv/
+evduty_exports/
